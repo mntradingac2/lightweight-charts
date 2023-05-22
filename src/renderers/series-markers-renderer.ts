@@ -133,7 +133,7 @@ function hitTestItem(item: SeriesMarkerRendererDataItem, x: Coordinate, y: Coord
 	return hitTestShape(item, x, y);
 }
 
-function hitTestShape(item: SeriesMarkerRendererDataItem, x: Coordinate, y: Coordinate): boolean {
+function hitTestShape(item: SeriesMarkerRendererDataItem, x: Coordinate, y: Coordinate): any {
 	if (item.size === 0) {
 		return false;
 	}
