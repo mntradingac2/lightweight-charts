@@ -13,7 +13,7 @@ function size(barSpacing: number, coeff: number): number {
 	return ceiledOdd(result);
 }
 
-export function shapeSize(shape: SeriesMarkerShape, originalSize: number): number {
+export function shapeSize(shape: SeriesMarkerShape, originalSize: number): any {
 	switch (shape) {
 		case 'arrowDown':
 		case 'arrowUp':

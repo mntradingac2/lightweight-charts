@@ -120,6 +120,9 @@ function drawShape(item: SeriesMarkerRendererDataItem, ctx: CanvasRenderingConte
 		case 'square':
 			drawSquare(ctx, item.x, item.y, item.size);
 			return;
+		case 'line':
+			drawSquare(ctx, item.x, item.y, item.size);
+			return;
 	}
 
 	ensureNever(item.shape);
