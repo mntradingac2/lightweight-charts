@@ -1,14 +1,16 @@
 import { Coordinate } from '../model/coordinate';
 import { SeriesItemsIndexesRange } from '../model/time-data';
 
-import { LinePoint, LineType } from './draw-line';
+import { LinePoint } from './draw-line';
+import { LineType } from './draw-line';
+import { LineItem } from './line-renderer';
 
 /**
  * BEWARE: The method must be called after beginPath and before stroke/fill/closePath/etc
  */
 export function walkLine(
 	ctx: CanvasRenderingContext2D,
-	points: readonly LinePoint[],
+	points: readonly LineItem[],
 	lineType: LineType,
 	visibleRange: SeriesItemsIndexesRange
 ): void {
@@ -16,19 +18,33 @@ export function walkLine(
 		return;
 	}
 
-	const x = points[visibleRange.from].x as number;
-	const y = points[visibleRange.from].y as number;
+	let i = visibleRange.from;
+	const x = points[i].x as number;
+	const y = points[i].y as number;
 	ctx.moveTo(x, y);
 
 	for (let i = visibleRange.from + 1; i < visibleRange.to; ++i) {
 		const currItem = points[i];
 
+		i++;
 		switch (lineType) {
 			case LineType.Simple:
 				ctx.lineTo(currItem.x, currItem.y);
 				break;
 			case LineType.WithSteps: {
 				ctx.lineTo(currItem.x, points[i - 1].y);
+				ctx.lineTo(currItem.x, currItem.y);
+				break;
+			}
+			case LineType.WithGaps: {
+				let isGap = true
+				if (currItem.price === null) {
+					isGap = true;
+					continue;
+				}
+				if (isGap) {
+					ctx.moveTo(currItem.x, currItem.y)
+				}
 				ctx.lineTo(currItem.x, currItem.y);
 				break;
 			}
