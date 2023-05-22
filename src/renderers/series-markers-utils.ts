@@ -22,6 +22,8 @@ export function shapeSize(shape: SeriesMarkerShape, originalSize: number): any {
 			return size(originalSize, 0.8);
 		case 'square':
 			return size(originalSize, 0.7);
+		case 'icon':
+			return size(originalSize, 1);
 	}
 }
 

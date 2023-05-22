@@ -7,6 +7,7 @@ import { SeriesMarkerShape } from '../model/series-markers';
 import { TextWidthCache } from '../model/text-width-cache';
 import { SeriesItemsIndexesRange, TimedValue } from '../model/time-data';
 
+import { drawIcon, hitTestIcon } from './series-markers-icon';
 import { ScaledRenderer } from './scaled-renderer';
 import { drawArrow, hitTestArrow } from './series-markers-arrow';
 import { drawCircle, hitTestCircle } from './series-markers-circle';
@@ -28,6 +29,7 @@ export interface SeriesMarkerRendererDataItem extends TimedValue {
 	internalId: number;
 	externalId?: string;
 	text?: SeriesMarkerText;
+	image?: string;
 }
 
 export interface SeriesMarkerRendererData {
@@ -100,6 +102,11 @@ function drawItem(item: SeriesMarkerRendererDataItem, ctx: CanvasRenderingContex
 	}
 
 	drawShape(item, ctx);
+	if (item.image !== undefined) {
+		drawIcon(item.image, ctx, item.x, item.y, item.size);
+	} else {
+		drawShape(item, ctx);
+	}
 }
 
 function drawShape(item: SeriesMarkerRendererDataItem, ctx: CanvasRenderingContext2D): void {
@@ -122,6 +129,9 @@ function drawShape(item: SeriesMarkerRendererDataItem, ctx: CanvasRenderingConte
 			return;
 		case 'line':
 			drawSquare(ctx, item.x, item.y, item.size);
+			return;
+		case 'icon':
+			drawIcon(item.image ? item.image : null, ctx, item.x, item.y, item.size);
 			return;
 	}
 
@@ -150,5 +160,7 @@ function hitTestShape(item: SeriesMarkerRendererDataItem, x: Coordinate, y: Coor
 			return hitTestCircle(item.x, item.y, item.size, x, y);
 		case 'square':
 			return hitTestSquare(item.x, item.y, item.size, x, y);
+		case 'icon':
+			return hitTestIcon(item.x, item.y, item.size, x, y);
 	}
 }

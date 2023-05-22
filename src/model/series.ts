@@ -497,7 +497,7 @@ export class Series<T extends SeriesType = SeriesType> extends PriceDataSource i
 			range = range !== null ? range.merge(rangeWithBase) : rangeWithBase;
 		}
 
-		return new AutoscaleInfoImpl(range,	this._markersPaneView.autoScaleMargins());
+		return new AutoscaleInfoImpl(range, this._markersPaneView.autoScaleMargins());
 	}
 
 	private _markerRadius(): number {
@@ -594,6 +594,7 @@ export class Series<T extends SeriesType = SeriesType> extends PriceDataSource i
 				internalId: index,
 				text: marker.text,
 				size: marker.size,
+				image: marker.image,
 			};
 		});
 	}
