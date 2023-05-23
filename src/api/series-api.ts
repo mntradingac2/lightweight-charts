@@ -119,6 +119,7 @@ export class SeriesApi<TSeriesType extends SeriesType> implements ISeriesApi<TSe
 		checkSeriesValuesType(this._series.seriesType(), data);
 
 		this._dataUpdatesConsumer.applyNewData(this._series, data);
+
 	}
 
 	public update(bar: SeriesDataItemTypeMap[TSeriesType]): void {
