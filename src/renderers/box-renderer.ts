@@ -1,4 +1,4 @@
-import { BitmapCoordinatesRenderingScope } from 'fancy-canvas';
+//import { BitmapCoordinatesRenderingScope } from 'fancy-canvas';
 
 import { Coordinate } from '../model/coordinate';
 import { Point } from '../model/point';
@@ -34,7 +34,7 @@ export class BoxRenderer extends BitmapCoordinatesPaneRenderer {
         this._data = data;
     }
 
-    protected _drawImpl({ context: ctx, bitmapSize, horizontalPixelRatio, verticalPixelRatio }: BitmapCoordinatesRenderingScope): void {
+    protected _drawImpl({ context: ctx, bitmapSize, horizontalPixelRatio, verticalPixelRatio }: any): void {
         if (this._data === null) {
             return;
         }
