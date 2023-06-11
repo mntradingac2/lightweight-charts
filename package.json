@@ -32,11 +32,10 @@
   "engines": {
     "node": ">=16.13.0"
   },
-  "dependencies": {
-    "fancy-canvas": "0.2.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@rollup/plugin-node-resolve": "~13.1.3",
+    "fancy-canvas": "0.2.2",
     "@rollup/plugin-replace": "~3.1.0",
     "@size-limit/file": "~7.0.5",
     "@types/chai": "~4.3.0",
@@ -91,7 +90,7 @@
     "install-hooks": "node scripts/githooks/install.js",
     "clean": "rimraf lib/ dist/",
     "bundle-dts": "tsc --noEmit --allowJs dts-config.js && dts-bundle-generator --config dts-config.js",
-    "tsc": "echo 'test'",
+    "tsc": "ttsc -p tsconfig.prod.json",
     "tsc-watch": "npm run tsc -- --watch --preserveWatchOutput",
     "tsc-verify": "tsc -b tsconfig.composite.json",
     "lint": "npm-run-all -p lint:**",
