@@ -1,3 +1,4 @@
+
 import { HoveredObject } from '../model/chart-model';
 import { Coordinate } from '../model/coordinate';
 

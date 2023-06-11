@@ -1,9 +1,9 @@
-import { BitmapCoordinatesRenderingScope, CanvasRenderingTarget2D } from 'fancy-canvas';
+import { BitmapCoordinatesRenderingScope } from 'fancy-canvas';
 
 import { IPaneRenderer } from './ipane-renderer';
 
 export abstract class BitmapCoordinatesPaneRenderer implements IPaneRenderer {
-    public draw(target: CanvasRenderingTarget2D, isHovered: boolean, hitTestData?: unknown): void {
+    public draw(target: any, isHovered: any, hitTestData?: any): void {
         target.useBitmapCoordinateSpace(
             (scope: BitmapCoordinatesRenderingScope) => this._drawImpl(scope, isHovered, hitTestData)
         );
